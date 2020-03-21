@@ -39,6 +39,9 @@ $(document).ready(function () {
         return hours + time;
     }
     timeFormat();
+function updateColors() {
+    var currentTime = new Date().getHours();
 
+}
     }
 });
