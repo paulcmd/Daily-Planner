@@ -6,26 +6,39 @@ function getLocalStorage(key) {
 }
 
 $(document).ready(function () {
-$("#currentDay").text(moment().format("dddd, MMMM Do"));
-for (var i = 9; i < 18; i++){
+    $("#currentDay").text(moment().format("dddd, MMMM Do"));
+    for (var i = 9; i < 18; i++) {
 
-    //create a row
-    var row = $('<div data-time=${i} id="${i}" class = "row"> ');
+        //create a row
+        var row = $('<div data-time=${i} id="${i}" class = "row"> ');
 
-    //create the first part of the column
-    var column1 = $(`<div class="col-sm-2"> <p class = "hour">${timeFormat(i)}</p>`);
+        //create the first part of the column
+        var column1 = $(`<div class="col-sm-2"> <p class = "hour">${timeFormat(i)}</p>`);
 
-    //create the second part of the column
-    var column2 = $('<div class="col-sm-8 past" <textarea id= text${i} class="description" placeholder="Add your event here..."></textarea');
+        //create the second part of the column
+        var column2 = $('<div class="col-sm-8 past" <textarea id= text${i} class="description" placeholder="Add your event here..."></textarea');
 
-    //create the third part of the column
-    var column3 = $('<div class="col-sm-2"><button class="saveBtn" id="${i}><i class="fas fa-save"></i><button</div>')
+        //create the third part of the column
+        var column3 = $('<div class="col-sm-2"><button class="saveBtn" id="${i}><i class="fas fa-save"></i><button</div>');
 
-    //append column to row
-    row.append(column1);
-    row.append(column2);
-    row.append(column3);
+        //append column to row
+        row.append(column1);
+        row.append(column2);
+        row.append(column3);
 
-    //a
-}
-})
+        //adding rows to the container
+        $(".container").append(row);
+
+        getLocalStorage(i);
+    }
+    
+    function timeFormat(hours) {
+        var time = hours >= 12 ? "pm" : "am";
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        return hours + time;
+    }
+    timeFormat();
+
+    }
+});
